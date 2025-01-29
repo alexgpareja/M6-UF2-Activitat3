@@ -40,12 +40,12 @@
         -->
 
         <!-- Mapeig de les entitats amb anotacions -->
-        <mapping class="com.alexgil.Llibre"/>
-        <mapping class="com.alexgil.Categoria"/>
-        <mapping class="com.alexgil.Usuari"/>
+        <mapping class="model.Llibre"/>
+        <mapping class="model.Categoria"/>
+        <mapping class="model.Usuari"/>
         
         <!-- Mapeig mitjançant arxius XML -->
-        <mapping resource="mappings/Reserva.hbm.xml"/>
+        <mapping resource="Reserva.hbm.xml"/>
       
     </session-factory>
 </hibernate-configuration>
