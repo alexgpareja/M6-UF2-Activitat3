@@ -10,33 +10,31 @@ public class Llibre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idLlibre;
+    private int idLlibre; // Identificador únic del llibre
 
     @Column(unique = true, nullable = false)
-    private long isbn;
+    private long isbn; // ISBN del llibre (únic i obligatori)
 
     @Column(nullable = false)
-    private String titol;
+    private String titol; // Títol del llibre (obligatori)
 
     @Column(nullable = false)
-    private String autor;
+    private String autor; // Autor del llibre (obligatori)
 
     @Column(nullable = false)
-    private int anyPublicacio;
+    private int anyPublicacio; // Any de publicació del llibre (obligatori)
 
     @Column(nullable = false)
-    private boolean disponibilitat;
+    private boolean disponibilitat; // Disponibilitat del llibre (true si està disponible, false si no)
 
-    @OneToOne // 1 llibre només pot tenir 1 categoria
+    @OneToOne // Relació 1 a 1 amb Categoria (un llibre té una categoria)
     @JoinColumn(name = "id_categoria", nullable = false, unique = true)
     private Categoria categoria;
 
-    @ManyToMany(mappedBy = "llibres")
+    @ManyToMany(mappedBy = "llibres") // Relació N a N amb Reserva (un llibre pot estar en diverses reserves)
     private Set<Reserva> reserves;
 
-    public Llibre() {
-    }
-
+    // Constructor
     public Llibre(long isbn, String titol, String autor, int anyPublicacio, boolean disponibilitat,
             Categoria categoria) {
         this.isbn = isbn;

@@ -2,7 +2,6 @@ package com.alex_gil.model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "Categoria")
@@ -10,21 +9,20 @@ public class Categoria implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idCategoria;
+    private int idCategoria; // Identificador únic de la categoria
 
     @Column(nullable = false, unique = true)
-    private String nomCategoria;
+    private String nomCategoria; // Nom de la categoria (únic i obligatori)
 
     @OneToOne(mappedBy = "categoria", cascade = CascadeType.ALL)
-    private Llibre llibre;
+    private Llibre llibre; // Relació 1 a 1 amb Llibre (un llibre té una categoria)
 
-    public Categoria() {
-    }
-
+    // Constructor
     public Categoria(String nomCategoria) {
         this.nomCategoria = nomCategoria;
     }
 
+    // Getters i Setters
     public int getIdCategoria() {
         return idCategoria;
     }
@@ -51,6 +49,9 @@ public class Categoria implements Serializable {
 
     @Override
     public String toString() {
-        return "Categoria{idCategoria=" + idCategoria + ", nomCategoria='" + nomCategoria + "'}";
+        return "Categoria{" +
+                "idCategoria=" + idCategoria +
+                ", nomCategoria='" + nomCategoria + '\'' +
+                '}';
     }
 }
