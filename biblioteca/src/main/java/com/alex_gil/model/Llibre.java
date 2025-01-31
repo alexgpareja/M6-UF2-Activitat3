@@ -2,7 +2,6 @@ package com.alex_gil.model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity
 @Table(name = "Llibres")
@@ -24,25 +23,26 @@ public class Llibre implements Serializable {
     @Column(nullable = false)
     private int anyPublicacio; // Any de publicació del llibre (obligatori)
 
-    @Column(nullable = false)
-    private boolean disponibilitat; // Disponibilitat del llibre (true si està disponible, false si no)
-
-    @OneToOne // Relació 1 a 1 amb Categoria (un llibre té una categoria)
-    @JoinColumn(name = "id_categoria", nullable = false, unique = true)
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", nullable = false) // Un llibre NOMÉS pot tenir UNA categoria (ManyToOne)
     private Categoria categoria;
 
-    @ManyToMany(mappedBy = "llibres") // Relació N a N amb Reserva (un llibre pot estar en diverses reserves)
-    private Set<Reserva> reserves;
+    @ManyToOne
+    @JoinColumn(name = "reserva_id", nullable = true) // Un llibre NOMÉS pot estar en UNA reserva (ManyToOne)
+    private Reserva reserva;
 
-    // Constructor
-    public Llibre(long isbn, String titol, String autor, int anyPublicacio, boolean disponibilitat,
-            Categoria categoria) {
+    // Constructor per defecte (necessari per Hibernate)
+    public Llibre() {
+    }
+
+    // Constructor personalitzat
+    public Llibre(long isbn, String titol, String autor, int anyPublicacio, Categoria categoria) {
         this.isbn = isbn;
         this.titol = titol;
         this.autor = autor;
         this.anyPublicacio = anyPublicacio;
-        this.disponibilitat = disponibilitat;
         this.categoria = categoria;
+        this.reserva = null; // Inicialment el llibre NO està reservat
     }
 
     // Getters i Setters
@@ -86,14 +86,6 @@ public class Llibre implements Serializable {
         this.anyPublicacio = anyPublicacio;
     }
 
-    public boolean isDisponibilitat() {
-        return disponibilitat;
-    }
-
-    public void setDisponibilitat(boolean disponibilitat) {
-        this.disponibilitat = disponibilitat;
-    }
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -102,12 +94,17 @@ public class Llibre implements Serializable {
         this.categoria = categoria;
     }
 
-    public Set<Reserva> getReserves() {
-        return reserves;
+    public Reserva getReserva() {
+        return reserva;
     }
 
-    public void setReserves(Set<Reserva> reserves) {
-        this.reserves = reserves;
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
+    // Disponibilitat automàtica: si el llibre té una reserva, no està disponible
+    public boolean isDisponible() {
+        return reserva == null;
     }
 
     @Override
@@ -118,8 +115,8 @@ public class Llibre implements Serializable {
                 ", titol='" + titol + '\'' +
                 ", autor='" + autor + '\'' +
                 ", anyPublicacio=" + anyPublicacio +
-                ", disponibilitat=" + disponibilitat +
-                ", categoria=" + categoria.getNomCategoria() +
+                ", categoria=" + (categoria != null ? categoria.getNomCategoria() : "Sense categoria") +
+                ", disponible=" + isDisponible() +
                 '}';
     }
 }

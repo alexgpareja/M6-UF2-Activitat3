@@ -30,7 +30,7 @@
         <property name="show_sql">true</property>
 
         <!-- Estratègia de gestió de l'esquema de la base de dades -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">validate</property>
 
         <!-- Opcions possibles per a hbm2ddl.auto:
             - create : Esborra i torna a crear la base de dades en cada execució

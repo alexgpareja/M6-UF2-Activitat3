@@ -2,7 +2,7 @@ package com.alex_gil.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 public class Reserva implements Serializable {
 
@@ -10,17 +10,17 @@ public class Reserva implements Serializable {
     private Date dataReserva; // Data de reserva
     private Date dataRetorn; // Data de retorn
     private Usuari usuari; // Relació Many-to-One amb Usuari
-    private Set<Llibre> llibres; // Relació Many-to-Many amb Llibre
+    private List<Llibre> llibres; // Relació One-to-Many amb Llibre
 
-    // Constructors, getters, setters, i toString
+    // Constructor per defecte (necessari per Hibernate)
     public Reserva() {
     }
 
-    public Reserva(Date dataReserva, Date dataRetorn, Usuari usuari, Set<Llibre> llibres) {
+    // Constructor personalitzat
+    public Reserva(Usuari usuari, Date dataReserva, Date dataRetorn) {
         this.dataReserva = dataReserva;
         this.dataRetorn = dataRetorn;
         this.usuari = usuari;
-        this.llibres = llibres;
     }
 
     // Getters i Setters
@@ -56,11 +56,11 @@ public class Reserva implements Serializable {
         this.usuari = usuari;
     }
 
-    public Set<Llibre> getLlibres() {
+    public List<Llibre> getLlibres() {
         return llibres;
     }
 
-    public void setLlibres(Set<Llibre> llibres) {
+    public void setLlibres(List<Llibre> llibres) {
         this.llibres = llibres;
     }
 
@@ -70,9 +70,8 @@ public class Reserva implements Serializable {
                 "idReserva=" + idReserva +
                 ", dataReserva=" + dataReserva +
                 ", dataRetorn=" + dataRetorn +
-                ", usuari=" + usuari.getDni() +
-                ", llibres=" + llibres.size() +
+                ", usuari=" + (usuari != null ? usuari.getDni() : "Sense usuari") +
+                ", llibres=" + (llibres != null ? llibres.size() : 0) +
                 '}';
     }
-
 }

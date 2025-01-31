@@ -6,6 +6,7 @@
 <hibernate-mapping>
     <!-- Defineix la classe Reserva i la seva taula a la base de dades -->
     <class name="com.alex_gil.model.Reserva" table="Reserva">
+        
         <!-- Identificador únic de la reserva -->
         <id name="idReserva" type="int" column="id_reserva">
             <generator class="identity"/> <!-- Generació automàtica de l'ID -->
@@ -18,12 +19,13 @@
         <property name="dataRetorn" type="timestamp" column="data_retorn" not-null="true"/>
 
         <!-- Relació Many-to-One amb Usuari -->
-        <many-to-one name="usuari" class="com.alex_gil.model.Usuari" column="dni" not-null="true"/>
+        <many-to-one name="usuari" class="com.alex_gil.model.Usuari" column="usuari_id" not-null="true" fetch="join"/>
 
-        <!-- Relació Many-to-Many amb Llibre (taula intermèdia Reserva_Llibre) -->
-        <set name="llibres" table="Reserva_Llibre" cascade="all">
-            <key column="id_reserva"/> <!-- Clau forana de Reserva -->
-            <many-to-many class="com.alex_gil.model.Llibre" column="id_llibre"/> <!-- Clau forana de Llibre -->
+        <!-- Relació One-to-Many amb Llibre -->
+        <set name="llibres" cascade="all" inverse="true" lazy="true">
+            <key column="reserva_id"/> <!-- Clau forana de Reserva -->
+            <one-to-many class="com.alex_gil.model.Llibre"/>
         </set>
+
     </class>
 </hibernate-mapping>
