@@ -45,7 +45,7 @@
         <mapping class="com.alex_gil.model.Usuari"/>
         
         <!-- Mapeig mitjançant arxius XML -->
-        
+        <mapping resource="reserva.hbm.xml"/>
       
     </session-factory>
 </hibernate-configuration>
