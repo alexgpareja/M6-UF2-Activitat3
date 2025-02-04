@@ -71,4 +71,14 @@ public class LlibreDAO {
             return null;
         }
     }
+
+    public List<Llibre> obtenirLlibresDisponibles() {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("FROM Llibre l WHERE l.reserva IS NULL", Llibre.class).list();
+        } catch (HibernateException e) {
+            System.err.println("Error en obtenirLlibresDisponibles(): " + e.getMessage());
+            return null;
+        }
+    }
+
 }

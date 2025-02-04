@@ -24,6 +24,9 @@ public class Usuari implements Serializable {
     private Set<Reserva> reserves;
 
     // Constructor
+    public Usuari() {
+    }
+
     public Usuari(String dni, String nomUsuari, String telefon, String email) {
         this.dni = dni;
         this.nomUsuari = nomUsuari;

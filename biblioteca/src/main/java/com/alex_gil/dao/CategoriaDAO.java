@@ -36,6 +36,32 @@ public class CategoriaDAO {
         }
     }
 
+    public void update(Categoria categoria) {
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            tx = session.beginTransaction();
+            session.merge(categoria);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null)
+                tx.rollback();
+            System.err.println("Error en update(): " + e.getMessage());
+        }
+    }
+
+    public void delete(Categoria categoria) {
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            tx = session.beginTransaction();
+            session.remove(categoria);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null)
+                tx.rollback();
+            System.err.println("Error en delete(): " + e.getMessage());
+        }
+    }
+
     public List<Categoria> findAll() {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Categoria", Categoria.class).list();

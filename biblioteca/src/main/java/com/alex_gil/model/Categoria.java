@@ -18,6 +18,9 @@ public class Categoria implements Serializable {
     private Llibre llibre; // Relació 1 a 1 amb Llibre (un llibre té una categoria)
 
     // Constructor
+    public Categoria() {
+    }
+
     public Categoria(String nomCategoria) {
         this.nomCategoria = nomCategoria;
     }

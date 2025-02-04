@@ -36,6 +36,32 @@ public class ReservaDAO {
         }
     }
 
+    public void update(Reserva reserva) {
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            tx = session.beginTransaction();
+            session.merge(reserva);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null)
+                tx.rollback();
+            System.err.println("Error en update(): " + e.getMessage());
+        }
+    }
+
+    public void delete(Reserva reserva) {
+        Transaction tx = null;
+        try (Session session = sessionFactory.openSession()) {
+            tx = session.beginTransaction();
+            session.remove(reserva);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null)
+                tx.rollback();
+            System.err.println("Error en delete(): " + e.getMessage());
+        }
+    }
+
     public List<Reserva> findAll() {
         try (Session session = sessionFactory.openSession()) {
             return session.createQuery("FROM Reserva", Reserva.class).list();
