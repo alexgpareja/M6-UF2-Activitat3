@@ -65,23 +65,52 @@ Eliminar un usuari
 ### Gestió de llibres
 <img width="309" alt="image" src="https://github.com/user-attachments/assets/a28aa5bf-dc28-4f13-94b4-88ad2079d799" />
 
-
 #### Afegir un nou llibre
+<img width="995" alt="image" src="https://github.com/user-attachments/assets/bceb7266-7f10-446b-952d-ec7c27534f76" />
+
+* Si la categoría del llibre no existeix:
+  <img width="992" alt="image" src="https://github.com/user-attachments/assets/7e6f4c7c-25d2-401d-8e3b-82c3601ffe59" />
+
 #### Mostrar tots els llibres
 #### Cercar un llibre per ID
 #### Eliminar un llibre
 
 ### Gestió de Categories
 #### Afegir una nova categoria
+<img width="982" alt="image" src="https://github.com/user-attachments/assets/9e9dd4c9-19e9-48c2-9e6d-c071816d5b13" />
+
 #### Mostrar totes les categories
+<img width="1000" alt="image" src="https://github.com/user-attachments/assets/e68c57e0-2e00-4b0e-a301-0b3673ba9617" />
+
 #### Cercar una categoria per ID
+<img width="1005" alt="image" src="https://github.com/user-attachments/assets/1e02e6a8-8807-422b-8f74-9a68c5e95cbd" />
+
+* Si no troba la categoria?
+  <img width="997" alt="image" src="https://github.com/user-attachments/assets/bd64580c-c771-4a89-ac3f-8428d939e41d" />
+
 #### Eliminar una categoria
+<img width="994" alt="image" src="https://github.com/user-attachments/assets/92929f7a-d3bd-4610-80af-7487035d4aed" />
+
+* Si no troba la categoria?
+<img width="991" alt="image" src="https://github.com/user-attachments/assets/0e7e6acb-7cac-4762-86b6-63e1b4317815" />
+
 #### Comptar quants llibres té cada categoria
+<img width="995" alt="image" src="https://github.com/user-attachments/assets/7cb88d6e-b260-48ab-bf62-7371fa57286e" />
 
 ### Gestió de Reserves
 #### Afegir una nova reserva
 #### Mostrar totes les reserves
 #### Cercar una reserva per ID
-#### Modificar una reserva (data de retorn i llibres)
+
+* Si no troba la reserva?
+<img width="994" alt="image" src="https://github.com/user-attachments/assets/cafd732a-7511-482a-afc1-833966a4fd8e" />
+
+
+#### Modificar una reserva (data de retorn)
+
 #### Eliminar una reserva
+
+* Si no troba la reserva?
+<img width="992" alt="image" src="https://github.com/user-attachments/assets/1e4097d0-7e63-4230-84ea-faacad297bda" />
+
 
