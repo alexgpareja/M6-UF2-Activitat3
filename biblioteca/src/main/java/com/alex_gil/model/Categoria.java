@@ -2,6 +2,7 @@ package com.alex_gil.model;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Categoria")
@@ -14,8 +15,8 @@ public class Categoria implements Serializable {
     @Column(nullable = false, unique = true)
     private String nomCategoria; // Nom de la categoria (únic i obligatori)
 
-    @OneToOne(mappedBy = "categoria", cascade = CascadeType.ALL)
-    private Llibre llibre; // Relació 1 a 1 amb Llibre (un llibre té una categoria)
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Llibre> llibres;
 
     // Constructor
     public Categoria() {
@@ -42,12 +43,12 @@ public class Categoria implements Serializable {
         this.nomCategoria = nomCategoria;
     }
 
-    public Llibre getLlibre() {
-        return llibre;
+    public List<Llibre> getLlibres() {
+        return llibres;
     }
 
-    public void setLlibre(Llibre llibre) {
-        this.llibre = llibre;
+    public void setLlibres(List<Llibre> llibres) {
+        this.llibres = llibres;
     }
 
     @Override

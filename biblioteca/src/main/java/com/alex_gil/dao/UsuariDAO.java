@@ -28,9 +28,11 @@ public class UsuariDAO {
         }
     }
 
-    public Usuari read(int id) {
+    public Usuari read(String dni) {
         try (Session session = sessionFactory.openSession()) {
-            return session.find(Usuari.class, id);
+            return session.createQuery("FROM Usuari WHERE dni = :dni", Usuari.class)
+                    .setParameter("dni", dni)
+                    .uniqueResult();
         } catch (HibernateException e) {
             System.err.println("Error en read(): " + e.getMessage());
             return null;

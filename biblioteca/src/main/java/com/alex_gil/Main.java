@@ -2,7 +2,6 @@ package com.alex_gil;
 
 import com.alex_gil.dao.*;
 import com.alex_gil.model.*;
-import com.alex_gil.HibernateUtil;
 import org.hibernate.SessionFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -84,17 +83,23 @@ public class Main {
 
                     Usuari usuari = new Usuari(dni, nom, telefon, email);
 
-                    usuariDAO.create(usuari);
-                    System.out.println("✅ Usuari afegit correctament!");
+                    usuariDAO.create(usuari); // Intenta crear l'usuari
+
+                    if (usuariDAO.read(dni) != null) {
+                        System.out.println("✅ Usuari afegit correctament!");
+                    } else {
+                        System.out.println("❌ No s'ha pogut afegir l'usuari. Revisa les dades.");
+                    }
+
                 }
                 case 2 -> {
                     System.out.println("📋 Llistat d'Usuaris:");
                     usuariDAO.findAll().forEach(System.out::println);
                 }
                 case 3 -> {
-                    System.out.print("🔍 Introdueix l'ID de l'usuari: ");
-                    int id = Integer.parseInt(br.readLine());
-                    Usuari usuari = usuariDAO.read(id);
+                    System.out.print("🔍 Introdueix el DNI de l'usuari: ");
+                    String dni = br.readLine();
+                    Usuari usuari = usuariDAO.read(dni);
                     if (usuari != null) {
                         System.out.println("🆔 Usuari trobat: " + usuari);
                     } else {
@@ -102,9 +107,9 @@ public class Main {
                     }
                 }
                 case 4 -> {
-                    System.out.print("🗑 Introdueix l'ID de l'usuari a eliminar: ");
-                    int id = Integer.parseInt(br.readLine());
-                    Usuari usuari = usuariDAO.read(id);
+                    System.out.print("🗑 Introdueix el DNI de l'usuari a eliminar: ");
+                    String dni = br.readLine();
+                    Usuari usuari = usuariDAO.read(dni);
                     if (usuari != null) {
                         usuariDAO.delete(usuari);
                         System.out.println("✅ Usuari eliminat correctament!");
@@ -259,7 +264,8 @@ public class Main {
             System.out.println("1️⃣ Afegir Reserva");
             System.out.println("2️⃣ Mostrar Totes les Reserves");
             System.out.println("3️⃣ Cercar Reserva per ID");
-            System.out.println("4️⃣ Eliminar Reserva");
+            System.out.println("4️⃣ Editar Reserva");
+            System.out.println("5️⃣ Eliminar Reserva");
             System.out.println("0️⃣ Tornar al menú principal");
             System.out.print("👉 Tria una opció: ");
 
@@ -272,12 +278,12 @@ public class Main {
                     // Seleccionar Usuari
                     System.out.println("👤 Usuaris disponibles:");
                     usuariDAO.findAll().forEach(System.out::println);
-                    System.out.print("🔍 Introdueix l'ID de l'usuari que fa la reserva: ");
-                    int usuariId = Integer.parseInt(br.readLine());
+                    System.out.print("🔍 Introdueix el DNI de l'usuari que fa la reserva: ");
+                    String usuariDni = br.readLine();
 
-                    Usuari usuari = usuariDAO.read(usuariId);
+                    Usuari usuari = usuariDAO.read(usuariDni);
                     if (usuari == null) {
-                        System.out.println("❌ No s'ha trobat cap usuari amb aquest ID.");
+                        System.out.println("❌ No s'ha trobat cap usuari amb aquest DNI.");
                         break;
                     }
 
@@ -299,14 +305,14 @@ public class Main {
                         break;
                     }
 
-                    // Crear reserva
+                    // Crear la reserva
                     Reserva reserva = new Reserva();
                     reserva.setUsuari(usuari);
-                    reservaDAO.create(reserva);
+                    reservaDAO.create(reserva); // Això crea la reserva a la base de dades
 
-                    // Assignar el llibre a la reserva
+                    // Assignar el llibre a la reserva dins la mateixa sessió
                     llibre.setReserva(reserva);
-                    llibreDAO.update(llibre);
+                    llibreDAO.update(llibre); // Assignar el llibre després de la creació de la reserva
 
                     System.out.println("✅ Reserva creada correctament!");
                 }
@@ -325,6 +331,30 @@ public class Main {
                     }
                 }
                 case 4 -> {
+                    // Editar una reserva (modificar la data de retorn)
+                    System.out.print("✏️ Introdueix l'ID de la reserva a editar: ");
+                    int id = Integer.parseInt(br.readLine());
+                    Reserva reserva = reservaDAO.read(id);
+
+                    if (reserva != null) {
+                        System.out.println("📜 Reserva trobada: " + reserva);
+
+                        // Modificar la data de retorn
+                        System.out
+                                .print("📅 Introdueix la nova data de retorn (YYYY-MM-DD) o prem Enter per mantenir: ");
+                        String dataRetornInput = br.readLine();
+                        if (!dataRetornInput.isEmpty()) {
+                            reserva.setDataRetorn(java.sql.Date.valueOf(dataRetornInput));
+                        }
+
+                        // Actualitzar la reserva
+                        reservaDAO.update(reserva);
+                        System.out.println("✅ Reserva actualitzada correctament!");
+                    } else {
+                        System.out.println("❌ No s'ha trobat cap reserva amb aquest ID.");
+                    }
+                }
+                case 5 -> {
                     System.out.print("🗑 Introdueix l'ID de la reserva a eliminar: ");
                     int id = Integer.parseInt(br.readLine());
                     Reserva reserva = reservaDAO.read(id);
