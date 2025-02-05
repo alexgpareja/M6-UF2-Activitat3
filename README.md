@@ -10,6 +10,39 @@ Aquesta activitat té com a objectiu desenvolupar una aplicació de gestió de b
 
 ## Estructura del projecte
 ```bash
+└── alexgpareja-m6-uf2-activitat3/
+    ├── README.md
+    └── biblioteca/
+        ├── pom.xml
+        ├── src/
+        │   └── main/
+        │       ├── java/
+        │       │   └── com/
+        │       │       └── alex_gil/
+        │       │           ├── HibernateUtil.java
+        │       │           ├── Main.java
+        │       │           ├── MainTest.java
+        │       │           ├── dao/
+        │       │           │   ├── CategoriaDAO.java
+        │       │           │   ├── LlibreDAO.java
+        │       │           │   ├── ReservaDAO.java
+        │       │           │   └── UsuariDAO.java
+        │       │           └── model/
+        │       │               ├── Categoria.java
+        │       │               ├── Llibre.java
+        │       │               ├── Reserva.java
+        │       │               └── Usuari.java
+        │       └── resources/
+        │           ├── hibernate.cfg.xml
+        │           └── reserva.hbm.xml
+        └── target/
+            └── classes/
+                ├── Reserva.hbm.xml
+                ├── hibernate.cfg.xml
+                └── com/
+                    └── alex_gil/
+                        ├── dao/
+                        └── model/
 
 ```
 
