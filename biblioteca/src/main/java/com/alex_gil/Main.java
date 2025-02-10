@@ -85,12 +85,6 @@ public class Main {
 
                     usuariDAO.create(usuari); // Intenta crear l'usuari
 
-                    if (usuariDAO.read(dni) != null) {
-                        System.out.println("✅ Usuari afegit correctament!");
-                    } else {
-                        System.out.println("❌ No s'ha pogut afegir l'usuari. Revisa les dades.");
-                    }
-
                 }
                 case 2 -> {
                     System.out.println("📋 Llistat d'Usuaris:");
@@ -99,12 +93,7 @@ public class Main {
                 case 3 -> {
                     System.out.print("🔍 Introdueix el DNI de l'usuari: ");
                     String dni = br.readLine();
-                    Usuari usuari = usuariDAO.read(dni);
-                    if (usuari != null) {
-                        System.out.println("🆔 Usuari trobat: " + usuari);
-                    } else {
-                        System.out.println("❌ No s'ha trobat cap usuari amb aquest ID.");
-                    }
+                    usuariDAO.read(dni); // Intenta buscar l'usuari
                 }
                 case 4 -> {
                     System.out.print("🗑 Introdueix el DNI de l'usuari a eliminar: ");
@@ -112,9 +101,6 @@ public class Main {
                     Usuari usuari = usuariDAO.read(dni);
                     if (usuari != null) {
                         usuariDAO.delete(usuari);
-                        System.out.println("✅ Usuari eliminat correctament!");
-                    } else {
-                        System.out.println("❌ No s'ha trobat cap usuari amb aquest ID.");
                     }
                 }
                 case 0 -> System.out.println("🔙 Tornant al menú principal...");
