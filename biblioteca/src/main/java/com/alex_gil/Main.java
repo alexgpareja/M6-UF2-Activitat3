@@ -125,6 +125,8 @@ public class Main {
 
             switch (opcio) {
                 case 1 -> {
+                    System.out.print("🆔 Introdueix el ISBN del llibre: ");
+                    long isbn = Long.parseLong(br.readLine());
                     System.out.print("📘 Introdueix el títol del llibre: ");
                     String titol = br.readLine();
                     System.out.print("✍ Introdueix l'autor: ");
@@ -138,13 +140,17 @@ public class Main {
                     System.out.print("📂 Introdueix l'ID de la categoria: ");
                     int idCategoria = Integer.parseInt(br.readLine());
 
+                    // Comprovem que la categoria existeixi a la base de dades
                     Categoria categoria = categoriaDAO.read(idCategoria);
+
                     if (categoria != null) {
-                        Llibre llibre = new Llibre(0, titol, autor, any, categoria);
-                        llibreDAO.create(llibre);
-                        System.out.println("✅ Llibre afegit correctament!");
+                        // Si la categoria existeix, creem el llibre
+                        Llibre llibre = new Llibre(isbn, titol, autor, any, categoria);
+                        llibreDAO.create(llibre); // Afegim el llibre a la base de dades
                     } else {
-                        System.out.println("❌ No s'ha trobat la categoria.");
+                        // Si la categoria no existeix, mostrem un missatge d'error
+                        System.out.println("❌ No s'ha trobat la categoria amb ID " + idCategoria
+                                + ". El llibre no s'ha pogut afegir.");
                     }
                 }
                 case 2 -> {
@@ -154,23 +160,13 @@ public class Main {
                 case 3 -> {
                     System.out.print("🔍 Introdueix l'ID del llibre: ");
                     int id = Integer.parseInt(br.readLine());
-                    Llibre llibre = llibreDAO.read(id);
-                    if (llibre != null) {
-                        System.out.println("📘 Llibre trobat: " + llibre);
-                    } else {
-                        System.out.println("❌ No s'ha trobat cap llibre amb aquest ID.");
-                    }
+                    llibreDAO.read(id);
                 }
                 case 4 -> {
                     System.out.print("🗑 Introdueix l'ID del llibre a eliminar: ");
                     int id = Integer.parseInt(br.readLine());
                     Llibre llibre = llibreDAO.read(id);
-                    if (llibre != null) {
-                        llibreDAO.delete(llibre);
-                        System.out.println("✅ Llibre eliminat correctament!");
-                    } else {
-                        System.out.println("❌ No s'ha trobat cap llibre amb aquest ID.");
-                    }
+                    llibreDAO.delete(llibre);
                 }
                 case 0 -> System.out.println("🔙 Tornant al menú principal...");
                 default -> System.out.println("⚠ Opció incorrecta!");
