@@ -58,9 +58,27 @@ Aquesta activitat té com a objectiu desenvolupar una aplicació de gestió de b
 #### Afegir un nou usuari
 <img width="998" alt="image" src="https://github.com/user-attachments/assets/2f19b262-045d-42b8-b145-6520c2106e8a" />
 
-Mostrar tots els usuaris
-Cercar un usuari per DNI
-Eliminar un usuari
+* Si l'usuari ja existeix (es comprova per dni duplicat):
+  <img width="992" alt="image" src="https://github.com/user-attachments/assets/62a56a9d-6045-4db1-b971-7e1c36945334" />
+
+#### Mostrar tots els usuaris
+<img width="637" alt="image" src="https://github.com/user-attachments/assets/6eb08f79-1928-4c06-b659-4b27426ff239" />
+
+* Si no hi ha cap usuari enregistrat:
+  <img width="703" alt="image" src="https://github.com/user-attachments/assets/990fea64-be1b-4388-bab0-ab7a9bf196bd" />
+
+#### Cercar un usuari per DNI
+<img width="728" alt="image" src="https://github.com/user-attachments/assets/073b8827-52b2-4fc1-a63f-8a4b5b6019d6" />
+
+* Si l'usuari no existeix o no es troba:
+  <img width="742" alt="image" src="https://github.com/user-attachments/assets/40647bd7-cecb-47a3-9228-2933419e9b5a" />
+
+#### Eliminar un usuari
+<img width="729" alt="image" src="https://github.com/user-attachments/assets/c74ddbcb-c3af-4937-9b64-52db3964d9d7" />
+
+* Si no troba l'usuari:
+  <img width="745" alt="image" src="https://github.com/user-attachments/assets/e51921c8-9a38-4cbc-93da-42a8de9bda66" />
+
 
 ### Gestió de llibres
 <img width="309" alt="image" src="https://github.com/user-attachments/assets/a28aa5bf-dc28-4f13-94b4-88ad2079d799" />
