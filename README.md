@@ -100,9 +100,27 @@ Aquesta activitat té com a objectiu desenvolupar una aplicació de gestió de b
 
 #### Mostrar tots els llibres
 
+<img width="984" alt="image" src="https://github.com/user-attachments/assets/d71d47f6-be63-432b-ad25-ba8993c7544a" />
+
+* Si no hi ha llibres:
+  <img width="987" alt="image" src="https://github.com/user-attachments/assets/652673ef-9e8f-4694-8040-8c04c449f41f" />
+
+
 #### Cercar un llibre per ID
 
+<img width="1002" alt="image" src="https://github.com/user-attachments/assets/691a6e29-aa19-49a8-a1d6-dccdedac0399" />
+
+* Si no troba el llibre:
+  <img width="990" alt="image" src="https://github.com/user-attachments/assets/b2c4133a-1363-4186-a167-ff0a878d60b9" />
+
+
 #### Eliminar un llibre
+
+<img width="996" alt="image" src="https://github.com/user-attachments/assets/61d94c83-d1d7-4b5b-a0e1-d49c5d3c4e1c" />
+
+* si no troba el llibre:
+  <img width="1006" alt="image" src="https://github.com/user-attachments/assets/a3797b23-cb87-41e0-9f8e-e32c92a42981" />
+
 
 ### Gestió de Categories
 
@@ -135,17 +153,34 @@ Aquesta activitat té com a objectiu desenvolupar una aplicació de gestió de b
 ### Gestió de Reserves
 
 #### Afegir una nova reserva
+<img width="995" alt="image" src="https://github.com/user-attachments/assets/e02db28e-f654-4bb9-a3f1-c8c695cada60" />
+ - En la reserva es mostren els usuaris existents.
+ - Es mostren els llibres disponibles.
 
 #### Mostrar totes les reserves
 
+<img width="987" alt="image" src="https://github.com/user-attachments/assets/8cd26913-3c17-4130-97e2-c26df58be183" />
+
+
+* Si no hi ha reserves:
+  <img width="951" alt="image" src="https://github.com/user-attachments/assets/3c3f7a58-ac5a-4cc1-b800-25ca74f43ac8" />
+
+
 #### Cercar una reserva per ID
 
+<img width="993" alt="image" src="https://github.com/user-attachments/assets/bef52051-c8b5-45e9-917e-cdc87f2dfec1" />
+
 * Si no troba la reserva?
-<img width="994" alt="image" src="https://github.com/user-attachments/assets/cafd732a-7511-482a-afc1-833966a4fd8e" />
+    <img width="994" alt="image" src="https://github.com/user-attachments/assets/cafd732a-7511-482a-afc1-833966a4fd8e" />
 
 #### Modificar una reserva (data de retorn)
 
+<img width="996" alt="image" src="https://github.com/user-attachments/assets/847b3491-e4e9-4589-ab97-4f944a176283" />
+
+
 #### Eliminar una reserva
+
+<img width="1001" alt="image" src="https://github.com/user-attachments/assets/2c5380d5-8899-4274-9ccd-b9465262b2cb" />
 
 * Si no troba la reserva?
 <img width="992" alt="image" src="https://github.com/user-attachments/assets/1e4097d0-7e63-4230-84ea-faacad297bda" />
