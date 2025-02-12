@@ -135,8 +135,15 @@ Aquesta activitat té com a objectiu desenvolupar una aplicació de gestió de b
 ### Gestió de Reserves
 
 #### Afegir una nova reserva
+<img width="995" alt="image" src="https://github.com/user-attachments/assets/e02db28e-f654-4bb9-a3f1-c8c695cada60" />
+ - En la reserva es mostren els usuaris existents.
+ - Es mostren els llibres disponibles.
 
 #### Mostrar totes les reserves
+
+* Si no hi ha reserves:
+  <img width="951" alt="image" src="https://github.com/user-attachments/assets/3c3f7a58-ac5a-4cc1-b800-25ca74f43ac8" />
+
 
 #### Cercar una reserva per ID
 
@@ -146,6 +153,8 @@ Aquesta activitat té com a objectiu desenvolupar una aplicació de gestió de b
 #### Modificar una reserva (data de retorn)
 
 #### Eliminar una reserva
+<img width="1001" alt="image" src="https://github.com/user-attachments/assets/2c5380d5-8899-4274-9ccd-b9465262b2cb" />
+
 
 * Si no troba la reserva?
 <img width="992" alt="image" src="https://github.com/user-attachments/assets/1e4097d0-7e63-4230-84ea-faacad297bda" />
