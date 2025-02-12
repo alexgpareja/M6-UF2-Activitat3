@@ -2,11 +2,15 @@ package com.alex_gil;
 
 import com.alex_gil.dao.*;
 import com.alex_gil.model.*;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -265,7 +269,7 @@ public class Main {
 
                     Usuari usuari = usuariDAO.read(usuariDni);
                     if (usuari == null) {
-                        System.out.println("❌ No s'ha trobat cap usuari amb aquest DNI.");
+                        System.out.println("❌ L'usuari no existeix.");
                         break;
                     }
 
@@ -278,26 +282,43 @@ public class Main {
                     }
                     llibresDisponibles.forEach(System.out::println);
 
-                    System.out.print("📘 Introdueix l'ID del llibre a reservar: ");
-                    int llibreId = Integer.parseInt(br.readLine());
-                    Llibre llibre = llibreDAO.read(llibreId);
+                    // Afegir llibres seleccionats a la reserva
+                    System.out.print("📘 Introdueix els IDs dels llibres a reservar (separats per comes): ");
+                    String[] llibreIds = br.readLine().split(",");
+                    Set<Llibre> llibresSeleccionats = new HashSet<>();
 
-                    if (llibre == null || llibre.getReserva() != null) {
-                        System.out.println("❌ Aquest llibre no està disponible.");
+                    for (String id : llibreIds) {
+                        int llibreId = Integer.parseInt(id.trim());
+                        Llibre llibre = llibreDAO.read(llibreId);
+
+                        if (llibre != null && llibre.getReserva() == null) {
+                            llibresSeleccionats.add(llibre);
+                        } else {
+                            System.out.println("❌ El llibre amb ID " + llibreId + " no està disponible.");
+                        }
+                    }
+
+                    if (llibresSeleccionats.isEmpty()) {
+                        System.out.println("❌ No s'ha afegit cap llibre a la reserva.");
                         break;
                     }
 
-                    // Crear la reserva
-                    Reserva reserva = new Reserva();
-                    reserva.setUsuari(usuari);
-                    reservaDAO.create(reserva); // Això crea la reserva a la base de dades
+                    try {
+                        Reserva reserva = new Reserva();
+                        reserva.setUsuari(usuari);
+                        reserva.setDataReserva(new java.util.Date());
+                        reserva.setDataRetorn(null);
 
-                    // Assignar el llibre a la reserva dins la mateixa sessió
-                    llibre.setReserva(reserva);
-                    llibreDAO.update(llibre); // Assignar el llibre després de la creació de la reserva
-
-                    System.out.println("✅ Reserva creada correctament!");
+                        for (Llibre llibre : llibresSeleccionats) {
+                            reserva.addLlibre(llibre);
+                        }
+                        System.out.println("✅ Reserva creada correctament!");
+                    } catch (Exception e) {
+                        System.err.println("Error en crear la reserva o assignar els llibres: " + e.getMessage());
+                        e.printStackTrace();
+                    }
                 }
+
                 case 2 -> {
                     System.out.println("📜 Llistat de Reserves:");
                     reservaDAO.findAll().forEach(System.out::println);

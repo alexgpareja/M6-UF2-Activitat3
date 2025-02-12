@@ -16,16 +16,15 @@
         <property name="dataReserva" type="timestamp" column="data_reserva" not-null="true"/>
 
         <!-- Data de retorn -->
-        <property name="dataRetorn" type="timestamp" column="data_retorn" not-null="true"/>
+        <property name="dataRetorn" type="timestamp" column="data_retorn"/>
 
         <!-- Relació Many-to-One amb Usuari -->
         <many-to-one name="usuari" class="com.alex_gil.model.Usuari" column="usuari_id" not-null="true" fetch="join"/>
 
         <!-- Relació One-to-Many amb Llibre -->
-        <set name="llibres" cascade="all" inverse="true" lazy="true">
-            <key column="reserva_id"/> <!-- Clau forana de Reserva -->
+        <set name="llibres" cascade="all" inverse="true" lazy="false">
+            <key column="reserva_id"/>
             <one-to-many class="com.alex_gil.model.Llibre"/>
         </set>
-
     </class>
 </hibernate-mapping>

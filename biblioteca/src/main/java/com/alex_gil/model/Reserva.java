@@ -2,7 +2,9 @@ package com.alex_gil.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Reserva implements Serializable {
 
@@ -10,7 +12,7 @@ public class Reserva implements Serializable {
     private Date dataReserva; // Data de reserva
     private Date dataRetorn; // Data de retorn
     private Usuari usuari; // Relació Many-to-One amb Usuari
-    private List<Llibre> llibres; // Relació One-to-Many amb Llibre
+    private Set<Llibre> llibres = new HashSet<>(); // Relació One-to-Many amb Llibre
 
     // Constructor per defecte (necessari per Hibernate)
     public Reserva() {
@@ -21,6 +23,17 @@ public class Reserva implements Serializable {
         this.dataReserva = dataReserva;
         this.dataRetorn = dataRetorn;
         this.usuari = usuari;
+    }
+
+    public void addLlibre(Llibre llibre) throws Exception {
+        if (llibre != null && !this.llibres.contains(llibre)) {
+            if (llibre.getReserva() == null) { // Verifica que el llibre no estigui en una altra reserva
+                this.llibres.add(llibre);
+                llibre.setReserva(this); // Relación bidireccional
+            } else {
+                throw new Exception("El llibre ja està assignat a una altra reserva.");
+            }
+        }
     }
 
     // Getters i Setters
@@ -56,12 +69,12 @@ public class Reserva implements Serializable {
         this.usuari = usuari;
     }
 
-    public List<Llibre> getLlibres() {
+    public Set<Llibre> getLlibres() {
         return llibres;
     }
 
-    public void setLlibres(List<Llibre> llibres) {
-        this.llibres = llibres;
+    public void setLlibres(Set<Llibre> llibresSeleccionats) {
+        this.llibres = llibresSeleccionats;
     }
 
     @Override
