@@ -327,11 +327,6 @@ public class Main {
                     System.out.print("🔍 Introdueix l'ID de la reserva: ");
                     int id = Integer.parseInt(br.readLine());
                     Reserva reserva = reservaDAO.read(id);
-                    if (reserva != null) {
-                        System.out.println("📜 Reserva trobada: " + reserva);
-                    } else {
-                        System.out.println("❌ No s'ha trobat cap reserva amb aquest ID.");
-                    }
                 }
                 case 4 -> {
                     // Editar una reserva (modificar la data de retorn)
@@ -340,8 +335,6 @@ public class Main {
                     Reserva reserva = reservaDAO.read(id);
 
                     if (reserva != null) {
-                        System.out.println("📜 Reserva trobada: " + reserva);
-
                         // Modificar la data de retorn
                         System.out
                                 .print("📅 Introdueix la nova data de retorn (YYYY-MM-DD) o prem Enter per mantenir: ");
@@ -352,9 +345,6 @@ public class Main {
 
                         // Actualitzar la reserva
                         reservaDAO.update(reserva);
-                        System.out.println("✅ Reserva actualitzada correctament!");
-                    } else {
-                        System.out.println("❌ No s'ha trobat cap reserva amb aquest ID.");
                     }
                 }
                 case 5 -> {
@@ -363,9 +353,6 @@ public class Main {
                     Reserva reserva = reservaDAO.read(id);
                     if (reserva != null) {
                         reservaDAO.delete(reserva);
-                        System.out.println("✅ Reserva eliminada correctament!");
-                    } else {
-                        System.out.println("❌ No s'ha trobat cap reserva amb aquest ID.");
                     }
                 }
                 case 0 -> System.out.println("🔙 Tornant al menú principal...");

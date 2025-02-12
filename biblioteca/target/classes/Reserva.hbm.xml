@@ -22,7 +22,7 @@
         <many-to-one name="usuari" class="com.alex_gil.model.Usuari" column="usuari_id" not-null="true" fetch="join"/>
 
         <!-- Relació One-to-Many amb Llibre -->
-        <set name="llibres" cascade="all" inverse="true" lazy="false">
+        <set name="llibres" cascade="all" inverse="true" lazy="false" fetch="join">
             <key column="reserva_id"/>
             <one-to-many class="com.alex_gil.model.Llibre"/>
         </set>

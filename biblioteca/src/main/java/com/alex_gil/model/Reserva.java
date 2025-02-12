@@ -84,7 +84,6 @@ public class Reserva implements Serializable {
                 ", dataReserva=" + dataReserva +
                 ", dataRetorn=" + dataRetorn +
                 ", usuari=" + (usuari != null ? usuari.getDni() : "Sense usuari") +
-                ", llibres=" + (llibres != null ? llibres.size() : 0) +
                 '}';
     }
 }
